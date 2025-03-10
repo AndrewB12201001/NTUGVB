@@ -17,6 +17,7 @@ function fetchTeams(){
     let teamsJSON = localStorage.getItem("teams");
     if (!teamsJSON) {
         console.log("No teams found.");
+        teamsJSON = {};
     }
     try {
         return JSON.parse(teamsJSON);
