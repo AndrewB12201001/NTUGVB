@@ -226,11 +226,11 @@
     <div class="form-container">
         <div class="tier-form">
             <h3>四級</h3>
-            <label for="Tier4-input">Enter Team Names (要表示分組就隔一行):</label>
-            <textarea id="Tier4-input" rows="6"></textarea>
+            <label for="GVB-input">Enter Team Names (要表示分組就隔一行):</label>
+            <textarea id="GVB-input" rows="6"></textarea>
             <div class="checkbox-wrapper">
-                <input type="checkbox" id="Tier4-random" name="Tier4-random" value="true">
-                <label for="Tier4-random">隨機分組</label>
+                <input type="checkbox" id="GVB-random" name="GVB-random" value="true">
+                <label for="GVB-random">隨機分組</label>
             </div>
         </div>
     </div>
@@ -243,9 +243,9 @@
                     <p>Format: 隊名 系所 第幾級</p>
                     <p>Example:</p>
                     <pre>
-中壢億隆慈惠宮 會計系 一級
-嗨 工海 一級
-要防守有打點 生機 一級</pre>
+中壢億隆慈惠宮 會計系
+嗨 工海
+要防守有打點 生機</pre>
                 </div>
                 <textarea 
                     id="batchInput" 
@@ -326,7 +326,7 @@
             }
             
             // Uncheck all random checkboxes
-            const checkbox = document.getElementById(`$Tier4-random`);
+            const checkbox = document.getElementById(`$GVB-random`);
             if (checkbox) {
                 checkbox.checked = false;
             }
@@ -341,8 +341,8 @@
             // group Size
             let groupSize = [];
             let groupTierSize = 0;
-            const textarea = document.getElementById(`Tier4-input`);
-            const checkbox = document.getElementById(`Tier4-random`);
+            const textarea = document.getElementById(`GVB-input`);
+            const checkbox = document.getElementById(`GVB-random`);
             let teams = textarea.value.split('\n');
             let count = 0;
             
@@ -414,7 +414,7 @@
                 }
             }
             console.log('groupSize', groupSize);
-            teamData[`Tier4-input`] = groupTeams(teams, groupSize);
+            teamData[`GVB-input`] = groupTeams(teams, groupSize);
             
 
             // Check if games have started
@@ -467,21 +467,16 @@
                 const resultDiv = document.getElementById('processResult');
                 resultDiv.innerHTML = '';
                 const teams = {};
-                const teamData = {'Tier4-input':''};
+                const teamData = {'GVB-input':''};
                 input.split('\n').forEach((line, index) => {
                     const cleanLine = line.trim();
                     if (!cleanLine) return;
                     
                     try {
-                        const parts = cleanLine.match(/(.+?)\s+([\S]+)\s+([\S]+)$/);
+                        const parts = cleanLine.match(/^(\S+).*?(\S+)$/);
                         if (parts) {
-                            const [_, teamName, teamId, tierText] = parts;
-                            const tierMapping = {'四級': 'Tier4' };
-                            const tier = tierMapping[tierText];
+                            const [_, teamName, teamId] = parts;
                             
-                            if (!tier) {
-                                throw new Error(`Invalid tier: ${tierText}`);
-                            }
 
                             if (nameCount[teamId] === undefined) {
                                 nameCount[teamId] = 0;
@@ -491,7 +486,7 @@
                                     teamName: teamName,
                                     games: [],
                                     preliminaryScore: 0,
-                                    preliminaryGroup: tier,
+                                    preliminaryGroup: "GVB",
                                     availableDays: null
                                 };
                             }else {
@@ -503,7 +498,7 @@
                                     teamName: teamName,
                                     games: [],
                                     preliminaryScore: 0,
-                                    preliminaryGroup: tier,
+                                    preliminaryGroup: GVB,
                                     availableDays: null
                                 };
                             }
