@@ -296,7 +296,7 @@
         }
     
         // 分組邏輯
-        function groupTeams(teams, tier, groupSize) {
+        function groupTeams(teams, groupSize) {
             console.log('teams', teams);
             let groups = [];
             let remainingTeams = [...teams];
@@ -334,7 +334,7 @@
     
     
         // save team data for visual in text box
-        function saveTeamData() {
+        function saveVisualTeamData() {
 
             const teamData = {};
             const nameCount = {};
@@ -365,7 +365,6 @@
                 // Initialize if undefined
                 if (nameCount[trimmedTeam] === undefined) {
                     nameCount[trimmedTeam] = 0;
-                    console.log(`First occurrence of ${trimmedTeam}:`, {...nameCount});
                     return trimmedTeam;
                 }
                 // Increment existing count
@@ -415,7 +414,7 @@
                 }
             }
             console.log('groupSize', groupSize);
-            teamData[`Tier4-input`] = groupTeams(teams, 'Tier4', groupSize);
+            teamData[`Tier4-input`] = groupTeams(teams, groupSize);
             
 
             // Check if games have started
@@ -546,7 +545,7 @@
             } else {
                 // We're in tier input mode - use existing submit functionality
                 wipeEverything();
-                saveTeamData();
+                saveVisualTeamData();
                 markGamesStarted();
                 processAndSaveTeamData(fetchTeamData());
                 loadTeamData();
