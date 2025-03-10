@@ -982,7 +982,7 @@
             createMatchesAccordingToNTUCupRules()
             console.log('match creating......')
             markGamesStarted(true);
-            matches = fetchMatches();
+            const matches = fetchMatches();
             renderMatches(matches);
             updateCreateMatchesButtonVisibility();
         });

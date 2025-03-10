@@ -432,8 +432,7 @@
 
 
         // save team data as json
-        function processAndSaveTeamData(teamDataString) {
-            const teamData = JSON.parse(teamDataString); // 將字串解析為物件
+        function processAndSaveTeamData(teamData) {
             const teamInstances = {}; // 用於儲存所有 Team 物件
             console.log(teamData)
             // 遍歷所有 Tier
@@ -544,10 +543,11 @@
                 location.reload();
             } else {
                 // We're in tier input mode - use existing submit functionality
+                const teamData = fetchTeamData();
                 wipeEverything();
                 saveVisualTeamData();
                 markGamesStarted();
-                processAndSaveTeamData(fetchTeamData());
+                processAndSaveTeamData(teamData);
                 loadTeamData();
             }
         });
