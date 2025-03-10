@@ -4,6 +4,7 @@ function fetchMatches() {
     let matchesJSON = localStorage.getItem("matches");
     if (!matchesJSON) {
         console.log("No matches found.");
+        saveMatches([]);
     }
     try {
         return JSON.parse(matchesJSON);
@@ -17,7 +18,7 @@ function fetchTeams(){
     let teamsJSON = localStorage.getItem("teams");
     if (!teamsJSON) {
         console.log("No teams found.");
-        teamsJSON = {};
+        saveTeams({});
     }
     try {
         return JSON.parse(teamsJSON);
@@ -31,6 +32,7 @@ function fetchTeamData(){// for input
     let teamDataJSON = localStorage.getItem("teamData");
     if (!teamDataJSON) {
         console.log("No teamData found.");
+        saveTeamData({});
     }
     try {
         return JSON.parse(teamDataJSON);
@@ -51,17 +53,17 @@ function fetchOfficialStats() {
 }
 
 function fetchGamesStarted(){
-    const hasGamesStarted = localStorage.getItem('gamesStarted');
+    const hasGamesStarted = localStorage.getItem('gamesStarted') || false;
     return hasGamesStarted;
 }
 
 function fetchGameIDCounter(){
-    const gameIDCounter = localStorage.getItem('gameIDCounter');
+    const gameIDCounter = localStorage.getItem('gameIDCounter') || 0;
     return gameIDCounter;
 }
 
 function fetchFirstClick(firstClickKey){
-    const isFirstClick = localStorage.getItem(firstClickKey);
+    const isFirstClick = localStorage.getItem(firstClickKey) || false;
     return isFirstClick;
 }
 // Save data
