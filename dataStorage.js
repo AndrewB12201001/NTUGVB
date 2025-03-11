@@ -5,6 +5,7 @@ function fetchMatches() {
     if (!matchesJSON) {
         console.log("No matches found.");
         saveMatches([]);
+        matchesJSON = localStorage.getItem("GVBmatches");
     }
     try {
         return JSON.parse(matchesJSON);
@@ -19,6 +20,7 @@ function fetchTeams(){
     if (!teamsJSON) {
         console.log("No teams found.");
         saveTeams({});
+        teamsJSON = localStorage.getItem("GVBteams");
     }
     try {
         return JSON.parse(teamsJSON);
@@ -33,8 +35,8 @@ function fetchTeamData(){// for input
     if (!teamDataJSON) {
         console.log("No teamData found.");
         saveTeamData({});
-    }
-    try {
+        teamDataJSON = localStorage.getItem("GVBteamData");
+    }try {
         return JSON.parse(teamDataJSON);
     } catch (error) {
         console.error("Error parsing teamData JSON:", error);
