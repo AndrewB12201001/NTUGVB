@@ -1,7 +1,7 @@
 // Fetch Data
 
 function fetchMatches() {
-    let matchesJSON = localStorage.getItem("matches");
+    let matchesJSON = localStorage.getItem("GVBmatches");
     if (!matchesJSON) {
         console.log("No matches found.");
         saveMatches([]);
@@ -15,7 +15,7 @@ function fetchMatches() {
 }
 
 function fetchTeams(){
-    let teamsJSON = localStorage.getItem("teams");
+    let teamsJSON = localStorage.getItem("GVBteams");
     if (!teamsJSON) {
         console.log("No teams found.");
         saveTeams({});
@@ -29,7 +29,7 @@ function fetchTeams(){
 }
 
 function fetchTeamData(){// for input
-    let teamDataJSON = localStorage.getItem("teamData");
+    let teamDataJSON = localStorage.getItem("GVBteamData");
     if (!teamDataJSON) {
         console.log("No teamData found.");
         saveTeamData({});
@@ -43,22 +43,22 @@ function fetchTeamData(){// for input
 }
 
 function fetchBrackets(){
-    const brackets = JSON.parse(localStorage.getItem('brackets')) || {};
+    const brackets = JSON.parse(localStorage.getItem('GVBbrackets')) || {};
     return brackets;
 }
 
 function fetchOfficialStats() {
-    const officialStats = JSON.parse(localStorage.getItem('officialStats')) || {};
+    const officialStats = JSON.parse(localStorage.getItem('GVBofficialStats')) || {};
     return officialStats;
 }
 
 function fetchGamesStarted(){
-    const hasGamesStarted = localStorage.getItem('gamesStarted') || false;
+    const hasGamesStarted = localStorage.getItem('GVBgamesStarted') || false;
     return hasGamesStarted;
 }
 
 function fetchGameIDCounter(){
-    const gameIDCounter = localStorage.getItem('gameIDCounter') || 0;
+    const gameIDCounter = localStorage.getItem('GVBgameIDCounter') || 0;
     return gameIDCounter;
 }
 
@@ -71,7 +71,7 @@ function fetchFirstClick(firstClickKey){
 function saveMatches(matches) {
     try {
         const matchesJSON = JSON.stringify(matches);
-        localStorage.setItem("matches", matchesJSON);
+        localStorage.setItem("GVBmatches", matchesJSON);
     } catch (error) {
         console.error("Error saving matches:", error);
     }
@@ -80,7 +80,7 @@ function saveMatches(matches) {
 function saveTeams(teams){
     try {
         const teamsJSON = JSON.stringify(teams);
-        localStorage.setItem("teams", teamsJSON);
+        localStorage.setItem("GVBteams", teamsJSON);
     } catch (error) {
         console.error("Error saving teams:", error);
     }
@@ -89,7 +89,7 @@ function saveTeams(teams){
 function saveTeamData(teamData){
     try {
         const teamDataJSON = JSON.stringify(teamData);
-        localStorage.setItem("teamData", teamDataJSON);
+        localStorage.setItem("GVBteamData", teamDataJSON);
     } catch (error) {
         console.error("Error saving teamData:", error);
     }
@@ -98,20 +98,20 @@ function saveTeamData(teamData){
 function saveOfficialStats(officialStats){
     try {
         const officialsJSON = JSON.stringify(officialStats);
-        localStorage.setItem("officialStats", officialsJSON);
+        localStorage.setItem("GVBofficialStats", officialsJSON);
     } catch (error) {
         console.error("Error saving officials:", error);
     }
 }
 
 function saveBrackets(existingBrackets){
-    localStorage.setItem('brackets', JSON.stringify(existingBrackets));
+    localStorage.setItem('GVBbrackets', JSON.stringify(existingBrackets));
 }
 
 function saveGameIDCounter(gameIDCounter){
     try {
         const gameIDCounterJSON = JSON.stringify(gameIDCounter);
-        localStorage.setItem("gameIDCounter", gameIDCounterJSON);
+        localStorage.setItem("GVBgameIDCounter", gameIDCounterJSON);
     } catch (error) {
         console.error("Error saving gameIDCounter:", error);
     }
@@ -123,7 +123,7 @@ function saveFirstClick(firstClickKey, state){
 
 // 標記比賽已開始
 function markGamesStarted(state) {
-    localStorage.setItem('gamesStarted', state);
+    localStorage.setItem('GVBgamesStarted', state);
 }
 
 function wipeEverything(){

@@ -1022,14 +1022,13 @@
 
             const container = document.getElementById("final-matches-container");
             const tierNumber = tier.replace('Tier', ''); // Extracts the tier number (1,2,3,4)
-            
-            if (!tierNumber || isNaN(tierNumber)) return; // Exit if tierNumber is invalid
+
 
             console.log(`Creating button for Tier ${tierNumber}`);
             
             const finalsButton = document.createElement("button");
             finalsButton.className = 'action-btn success';
-            finalsButton.textContent = `Generate Tier ${tierNumber} Finals`;
+            finalsButton.textContent = `Generate ${tierNumber} Finals`;
 
             let firstClickKey = `isTier${tierNumber}FirstClick`;
             let isFirstClick = fetchFirstClick(firstClickKey) !== "false";
